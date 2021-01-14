@@ -1,0 +1,13 @@
+<div><input type="text" [(ngModel)]="comment.message"> <button (click)="addcomment()" [disabled]="NewComment">Add comment</button></div>
+<div *ngIf="comments.length>0; else noComments" >
+  <h3>liste des messages:</h3>
+  <ul  >
+    <li *ngFor="let c of comments">
+      {{c.id}}:{{c.message}}
+    </li>
+  </ul>
+</div>
+<ng-template #noComments>
+  <p>Liste des commentaires</p>
+</ng-template>
+

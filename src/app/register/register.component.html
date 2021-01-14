@@ -1,0 +1,151 @@
+<div id="wrapper">
+  <div class="vertical-align-wrap">
+    <div class="vertical-align-middle auth-main">
+      <div class="auth-box">
+        <div class="top">
+          <img src="http://www.wrraptheme.com/templates/lucid/hr/html/assets/images/logo-white.svg" alt="Lucid">
+        </div>
+        <div class="card">
+          <div class="header">
+            <p class="lead">Login to your account</p>
+          </div>
+          <div class="body">
+
+            <select *ngIf="choix===''" [(ngModel)]="choix" class="form-control">
+              <option value="admin" SELECTED >Admin</option>
+              <option value="secretaire">Secretaire</option>
+            </select>
+
+
+
+
+            <form *ngIf="choix==='admin'" class="form-auth-small" [formGroup]="registerForm" (ngSubmit)="onSubmitadmin()">
+              <div class="form-group">
+                <label for="signup-fName" class="control-label sr-only">firstName</label>
+                <input type="text" formControlName="firstName" id="signup-fName" placeholder="firstName"
+                       class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                  <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                </div></div>
+              <div class="form-group">
+                <label for="signup-lName" class="control-label sr-only">LastName</label>
+                <input type="text" formControlName="LastName" id="signup-lName" placeholder="LastName"class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }">
+                <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+                  <div *ngIf="f.LastName.errors.required">LastName is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="signin-email" class="control-label sr-only">Email</label>
+                <input type="text" formControlName="email" id="signin-email" class="form-control" placeholder="email"
+                       [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="signup-username" class="control-label sr-only" >Username</label>
+                <input  type="text" formControlName="username"
+                        id="signup-username" placeholder="username" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                  <div *ngIf="f.username.errors.required">Email is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="signup-password" class="control-label sr-only" >Password</label>
+                <input  type="password" formControlName="password" id="signup-password" placeholder="password" class="form-control" >
+
+              </div>
+                <div class="form-group">
+                  <label for="signup-Cpassword" class="control-label sr-only">Confirm Password</label>
+                  <input  type="password" formControlName="confirmPassword" id="signup-Cpassword"placeholder=" confirmPassword" class="form-control" >
+
+                </div>
+              <div class="form-group">
+                <label for="signup-Cpassword" class="control-label sr-only">Photo</label>
+                <input  type="file"  id="file-input" class="form-control" (change)="recuperFile($event);onSubmitadmin()" >
+
+              </div>
+              <div class="form-group clearfix">
+                <label for="acceptTerms" class="fancy-checkbox element-left">
+                  <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }">
+                  <span>Remember me</span>
+                  <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is required</div>
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+              <button type="reset" class="btn btn-primary btn-lg btn-block" (click)="onReset()">Cancel</button>
+              <div class="bottom">
+                <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="page-forgot-password.html">Forgot password?</a></span>
+                <span>Don't have an account? <a href="page-register.html">Register</a></span>
+                <!--<button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>-->
+              </div>
+            </form>
+            <form *ngIf="choix==='secretaire'" class="form-auth-small" [formGroup]="registrForm1" (ngSubmit)="onSubmitsec()">
+              <div class="form-group">
+                <label for="signup-fName" class="control-label sr-only">FirstName</label>
+                <input type="text" formControlName="firstName" id="signup-fName1" placeholder="firstName" class="form-control" >
+
+            </div>
+              <!--<div class="form-group">-->
+                <!--<label for="signup-lName" class="control-label sr-only">LastName</label>-->
+                <!--<input type="text" formControlName="LastName" id="signup-lName" placeholder="LastName"class="form-control" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }">-->
+                <!--<div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">-->
+                  <!--<div *ngIf="f.LastName.errors.required">LastName is required</div>-->
+                <!--</div>-->
+              <!--</div>-->
+              <div class="form-group">
+                <label for="signin-email" class="control-label sr-only">Email</label>
+                <input type="text" formControlName="email" id="signin-email1" class="form-control" placeholder="email" >
+
+
+              </div>
+              <div class="form-group">
+                <label for="signup-username" class="control-label sr-only" >Username</label>
+                <input  type="text" formControlName="username" id="signup-username1" placeholder="username" class="form-control" >
+
+              </div>
+              <div class="form-group">
+                <label for="signup-password" class="control-label sr-only" >Password</label>
+                <input  type="password" formControlName="password" id="signup-password1" placeholder="password" class="form-control" >
+
+              </div>
+              <div class="form-group">
+                <label for="signup-Cpassword" class="control-label sr-only">Confirm Password</label>
+                <input  type="password" formControlName="confirmPassword" id="signup-Cpassword1"placeholder=" confirmPassword" class="form-control" >
+
+              </div>
+              <div class="form-group">
+                <label for="signup-Cpassword" class="control-label sr-only">Photo</label>
+                <input  type="file"  id="file-input1" class="form-control" (change)="recuperFile($event);onSubmitsec()" >
+
+              </div>
+              <div class="form-group clearfix">
+                <label  class="fancy-checkbox element-left">
+                  <input type="checkbox" formControlName="acceptTerms" >
+                  <span>Remember me</span>
+
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+              <button type="reset" class="btn btn-primary btn-lg btn-block" (click)="onReset()">Cancel</button>
+              <div class="bottom">
+                <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="page-forgot-password.html">Forgot password?</a></span>
+                <span>Don't have an account? <a href="page-register.html">Register</a></span>
+                <!--<button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>-->
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!--pour afficher l'image -->
+<!--<div class="card-body">-->
+  <!--<img src="http://localhost:9100/upload/files/{{d.photo}}" />-->
+<!--</div>-->
